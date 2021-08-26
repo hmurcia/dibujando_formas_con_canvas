@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<!-- Tomado de: https://developer.mozilla.org/es/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes
+     Adaptado por: hector.murcia@unimilitar.edu.co -->
+<script>
+var ctx;
+function draw() {
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+    ctx = canvas.getContext('2d');
+
+    ctx.fillRect(25,25,100,100);
+    ctx.clearRect(45,45,60,60);
+    ctx.strokeRect(50,50,50,50);
+    line(0,0,100,100);
+    triangle(100,100,200,200,145,70, 4);
+  }
+}
+function line(x1, y1, x2, y2) {
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+}
+function triangle(x1, y1, x2, y2, x3, y3, fill) {
+  line(x1, y1, x2, y2);
+  ctx.lineTo(x3, y3);
+  if (fill)
+    ctx.fill();
+  else {
+     ctx.closePath()
+     ctx.stroke()
+  }
+}
+</script>
+<body onclick='draw()'>
+
+<canvas id='canvas' width=800 height=800></canvas>
+
+</body>
+</html>
